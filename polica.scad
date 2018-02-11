@@ -11,6 +11,8 @@
   * - The cartridge holder: holds the film catridge in the correct position.
   * - The roller cap: holds film rollers and caps off cartridge access port.
   * - rollers: bursts the chemical packet and spreads chemicals across film area.
+  *
+  * All measurements and units are in millimeters.
  **/
 
 // Instax Square cartridge prototype shape
@@ -79,6 +81,7 @@ module lipcatch() {
 }
 
 // body that holds the instax square cartridge
+// TODO: add release pin, so that the filmback can be removed.
 module filmback() {
     difference() 
     {
@@ -143,20 +146,20 @@ module filmback() {
 // Inserted into roller cap. Will be used to burst chemical packet
 // and spread chemicals over film area.
 module roller() {
-    cylinder(h=66, r=3);
+    cylinder(h=66, r=4);
 }
 
 // Grove in rollercap to allow rollers to slide into place.
 module roller_grove() {
 	union (){
 	  minkowski() {
-	    translate([-13, -4.6, 10])
-	    cube(size=[0.1,6,0.1]);
+	    translate([-13, 0, 10])
+	    cube(size=[0.1, 8.5, 0.1], center=true);
 	    cylinder($fn=60, r=1);
 	  }
 	  minkowski() {
-	    translate([-13, -4.6, 10])
-	    cube(size=[8, 0.1, 0.1]);
+	    translate([-9, -4.25, 10])
+	    cube(size=[8, 0.1, 0.1], center=true);
 	    cylinder($fn=60, r=1);
 	  }
 	}
@@ -211,7 +214,7 @@ module rollercap() {
 rollercap();
 filmback();
 
-translate([-13, 2.5, 12])
+translate([-13, 4.25, 12])
 %roller();
-translate([-13, -4, 12])
+translate([-13, -4.25, 12])
 %roller();
