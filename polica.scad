@@ -15,43 +15,7 @@
   * All measurements and units are in millimeters.
  **/
 
-// Instax Square cartridge prototype shape
-module cartridge() {
-	translate([82, 0, 7])
-   rotate([0, -90])
-	{
-    // main body
-    hull () {
-        linear_extrude(height=0.01)
-        polygon(points=[[0, 0], 
-                        [76, 0], 
-                        [75.5, -14], 
-                        [0.5, -14]]);
-        translate([0, 0, 90])
-        linear_extrude(height=0.01)
-        polygon(points=[[0.5, 0],
-                        [75.5, 0],
-                        [76, -19], 
-                        [0, -19]]);
-    }
-
-   // end grip
-    translate([0, 0, 88])
-    linear_extrude(height=2)
-    polygon(points=[[-1.5, 1],
-                    [77.5, 1],
-                    [77.5, -19], 
-                    [-1.5, -19]]);
-    
-   // end stop
-    translate([0, 0, 72])
-    linear_extrude(height=18)
-    polygon(points=[[0.5, 1],
-                    [75.5, 1],
-                    [76, -18], 
-                    [0, -18]]);
-	}
-}
+include <instax.scad>;
 
 // part of filmback. Top connector interface to Bronica
 module connector_top(){
@@ -112,6 +76,8 @@ module filmback() {
       //subtract cartridge from case body
       // minkowski provides a margin, so the fit isn't too tight
       minkowski() {
+		  translate([82, 0, 7])
+   		  rotate([0, -90])
         cartridge();
         sphere(r=0.25, center=true, $fa=15);
       }
@@ -215,6 +181,6 @@ rollercap();
 filmback();
 
 translate([-13, 4.25, 12])
-%roller();
+roller();
 translate([-13, -4.25, 12])
-%roller();
+roller();
