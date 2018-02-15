@@ -49,6 +49,7 @@ module lipcatch() {
 module filmback() {
     difference() 
     {
+        translate([-42.5, 0, -44.5])
 		union (){
         //case body
         color("gold")
@@ -76,21 +77,20 @@ module filmback() {
       //subtract cartridge from case body
       // minkowski provides a margin, so the fit isn't too tight
       minkowski() {
-		  translate([82, 0, 7])
-   		  rotate([0, -90])
+   		rotate([0, -90])
         cartridge();
         sphere(r=0.25, center=true, $fa=15);
       }
 
-      translate([17.5, 0.1, 84.5])
+        translate([-25, 0.1, 40])
 		connector_top();
 
-		translate([14, 0.1, 2.5])
+		translate([-28.5, 0.1, -42])
 		connector_bottom();
             
         // film plane box
-		  // 1mm margin wider from native filmback 
-        translate([13.5,0,15.5])
+		  // 1mm margin wider from native filmback
+        translate([-29, 0, -29])
         cube(size = [58,6,58]);
     }
         
@@ -105,6 +105,7 @@ module filmback() {
      translate([5,5,81])
       cube(size = [77, 0.8, 1]);
    }
+    translate([-42.5, 0, -44.5])
 	color("red")
    treads();
 }
@@ -177,10 +178,11 @@ module rollercap() {
 	}
 }
 
+translate([-42.5, 0, -44.5])
 rollercap();
 filmback();
 
-translate([-13, 4.25, 12])
+translate([-55.5, 4.25, -32.5])
 roller();
-translate([-13, -4.25, 12])
+translate([-55.5, -4.25, -32.5])
 roller();
