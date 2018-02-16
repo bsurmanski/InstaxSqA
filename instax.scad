@@ -5,10 +5,10 @@ module cartridge() {
     // main body
     hull () {
         linear_extrude(height=0.01)
-        polygon(points=[[0, 0], 
-                        [76, 0], 
-                        [75.5, -14], 
-                        [0.5, -14]]);
+        polygon(points=[[0.5, 0],
+                        [75.5, 0],
+                        [76, -14],
+                        [0, -14]]);
         translate([0, 0, 90])
         linear_extrude(height=0.01)
         polygon(points=[[0.5, 0],
@@ -34,5 +34,3 @@ module cartridge() {
                     [0, -18]]);
 	}
 }
-
-//cartridge();
