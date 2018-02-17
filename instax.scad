@@ -1,6 +1,6 @@
 // Instax Square cartridge prototype shape
 module cartridge() {
-    translate([-37.5, 0, -36.5])
+    translate([-38, 0, -36.5])
 	{
     // main body
     hull () {
@@ -33,4 +33,12 @@ module cartridge() {
                     [76, -18], 
                     [0, -18]]);
 	}
+    
+    color("wheat")
+    translate([31.5, 0, -36.5])
+    cube(size = [2, 1, 25]);
+    
+    color("peru")
+    translate([-32.5, 0, -32.5])
+    cube(size = [65, 1, 65]);
 }
