@@ -11,7 +11,7 @@ module film_plane() {
 //color("cornflowerBlue")
 //film_plane();
 
-color("blue")
+//color("blue")
 rotate([0, -90, 0])
 cartridge();
 
@@ -76,16 +76,16 @@ module cartridge_support() {
             rotate([90,0,0])
             cylinder(d1=3, d2=1, h=10);
             
-            translate([8, 0, 0])
+            translate([6.5, 0, 0])
             rotate([90,0,0])
             cylinder(d1=3, d2=2, h=10);
         }
     }
     
 	 color("lightblue") {
-    translate([37.75, 3, 20])
+    translate([39, 3, 20])
     bottom_support();
-    translate([37.75, 3, -20])
+    translate([39, 3, -20])
     bottom_support();
 	 }
     
@@ -105,8 +105,14 @@ module cartridge_support() {
     translate([0, 3, -40.5])
     rotate([0, 180, 0])
     side_support(stride=1.75);
-    translate([0, 3, 39.75])
-    side_support(stride=1.0);
+
+	 // Slider guard
+	 translate([0, 3, 39.3])
+	 fillet_cube(size=[30, 6, 2], r=1);
+	 translate([-14, 3, 40.7])
+	 fillet_cube(size=[2, 6, 6], r=1);
+	 translate([0, 3, 38.7])
+	 fillet_cube(size=[2, 6, 2], r=1);
 	 }
 }
 
@@ -143,26 +149,26 @@ module filmback() {
         
         // base, -Z
         hull () {
-            translate([46.5, 5, 41.5])
+            translate([46.5, 5, 43.5])
             rotate([90,0,0])
             cylinder(d=2, h=25);
-            translate([-41.5, 5, 41.5])
+            translate([-41.5, 5, 43.5])
             rotate([90,0,0])
             cylinder(d=2, h=25);
         }
 		  
        // Inside fillet edge
 	    color("red")
-		 translate([40.5, -20, 35.5])
-		 fillet_edge(r=5, h=25);
+		 translate([43.5, -20, 38.5])
+		 fillet_edge(r=2, h=25);
 		 color("red")
-		 translate([40.5, -20, -37.5])
+		 translate([43.5, -20, -40.5])
 		 rotate([0, 90, 0])
-		 fillet_edge(r=5, h=25);
+		 fillet_edge(r=2, h=25);
     }
 	 walls();
 }
-filmback();
+%filmback();
 
 module lid() {
 	difference() {
@@ -175,5 +181,19 @@ module lid() {
 	fillet_cube(size=[92, 2.2, 87], r=1);
 }
 
-color("pink") 
-lid();
+//color("pink") 
+//lid();
+
+module pusher() {
+	translate([40, 3, 32.5])
+	fillet_cube(size=[5, 4, 2], r=1);
+
+	translate([40.5, 3, 37])
+	fillet_cube(size=[4, 1.5, 11], r=1);
+
+	translate([27.5, 3, 41.5])
+	fillet_cube(size=[30, 4, 2], r=1);
+}
+
+color("red")
+pusher();
